@@ -11,7 +11,10 @@ class Population {
     return populationValue;
   }
 
-  // int updatePopulation(int resourceMeasure) {
-  //
-  // }
+  int maintainPopulation(int populationEffect) {
+      double decreasePercentage = populationEffect/100;
+      int populationGaol = (populationValue - (populationValue *
+          decreasePercentage)) as int;
+      return populationGaol;
+    }
 }
