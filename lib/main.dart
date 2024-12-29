@@ -34,16 +34,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int greenPopulation = Population().getPopulation();
-  int volPopulation = Population().getPopulation();
-  String green = Resource().getValue();
-  String volcanic = Resource().getValue();
-  int countdownValue = 20;
+  Population greenPopulation = Population();
+  Population volPopulation = Population();
+  Resource green = Resource();
+  Resource volcanic = Resource();
+  int countdownValue = 10;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 3), (timer) {
       setState(() {
         countdownValue --;
       });
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Row(
                 children: [
-                  Column(
+                  Flexible(child: Column(
                       children: [
                         createSizeBox('assets/images/green.png'),
                         Container(
@@ -78,19 +78,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           child: Column(
                             children: [
-                              createText( "Population: $greenPopulation",
+                              createText( "Healthy Population:"
+                                  " ${greenPopulation.getPopulation()}",
                                   Colors.black, 24),
-                              createText( "Resource Status: $green",
+                              createText( "Resource Status: ${green.getValue()}",
                                   Colors.black, 24),
                           ]
                         ),
                       ),
                     ]
+                    ),
                   ),
                   Spacer(),
                   createText(countdownValue.toString(), Colors.blue, 100),
                   Spacer(),
-                  Column(
+                  Flexible(child: Column(
                       children: [
                         createSizeBox('assets/images/volcanic.png'),
                         Container(
@@ -101,17 +103,40 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           child: Column(
                               children: [
-                                createText( "Population: $volPopulation",
+                                createText( "Healthy Population: "
+                                    "${volPopulation.getPopulation()}",
                                     Colors.black, 24),
-                                createText( "Resource Status: $volcanic",
+                                createText( "Resource Status: "
+                                    "${volcanic.getValue()}",
                                     Colors.black, 24),
                               ]
                           ),
                         ),
                       ]
+                    ),
                   ),
                 ]
             ),
+            Spacer(),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  color: Colors.redAccent,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              child: Column(
+                children: [
+                  createText( "Stop planet green's population "
+                      "from going less than "
+                      "${greenPopulation.maintainPopulation(green.getPopulationEffect())}",
+                      Colors.black, 24),
+                  createText( "Revert planet volcano's resources to "
+                      "${volcanic.getPriorResourceValue()}",
+                      Colors.black, 24),
+                ],
+              ),
+            ),
+            Spacer(),
           ]
       ),
     );
