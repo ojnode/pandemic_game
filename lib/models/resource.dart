@@ -2,22 +2,26 @@ import 'dart:math';
 
 class Resource {
   late String resourceValue;
+  late String priorResourceValue;
   late int resourceQuantity;
+  late int populationEffect;
 
   Resource() {
     Map<int, String> resourceLevel = {
       10 : "Adequate",
-      20 : "Strained",
-      25 : "Critical",
+      15 : "Strained",
+      20 : "Critical",
       30 : "Exhausted"
     };
 
-    resourceQuantity = Random().nextInt(30) + 1;
+    resourceQuantity = Random().nextInt(19) + 11;
     for (int key in resourceLevel.keys.toList()..sort()) {
       if (resourceQuantity <= key ) {
         resourceValue =  resourceLevel[key]!;
+        populationEffect = key;
         break;
       }
+      priorResourceValue =  resourceLevel[key]!;
     }
   }
 
@@ -25,7 +29,12 @@ class Resource {
     return resourceValue;
   }
 
-  int getQuantity() {
-    return resourceQuantity;
+  String getPriorResourceValue() {
+    return priorResourceValue;
   }
+
+  int getPopulationEffect() {
+    return populationEffect;
+  }
+
 }
