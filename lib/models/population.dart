@@ -4,7 +4,7 @@ class Population {
   late int populationValue;
 
   Population() {
-    populationValue = (Random().nextInt(9) + 2) * 100;
+    populationValue = (Random().nextInt(6) + 5) * 100;
   }
 
   int getPopulation() {
@@ -13,8 +13,17 @@ class Population {
 
   int maintainPopulation(int populationEffect) {
       double decreasePercentage = populationEffect/100;
-      int populationGaol = (populationValue - (populationValue *
-          decreasePercentage)) as int;
-      return populationGaol;
+      int populationGoal = (populationValue - (populationValue *
+          decreasePercentage)).toInt();
+      return populationGoal;
     }
+
+  bool reducePopulation(int populationEffect) {
+      populationValue -= populationEffect;
+      if (populationValue < populationEffect) {
+        return false;
+      }
+      return true;
+  }
+
 }
