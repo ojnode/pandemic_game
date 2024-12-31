@@ -39,13 +39,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Resource green = Resource();
   Resource volcanic = Resource();
   int countdownValue = 10;
+  late int populationGoal;
 
   @override
   void initState() {
     super.initState();
+    int populationEffect = green.getPopulationEffect();
+    populationGoal = greenPopulation.maintainPopulation(populationEffect);
     Timer.periodic(const Duration(seconds: 3), (timer) {
       setState(() {
         countdownValue --;
+        greenPopulation.reducePopulation(populationEffect);
       });
       if (countdownValue <= 0) {
         timer.cancel();
@@ -128,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   createText( "Stop planet green's population "
                       "from going less than "
-                      "${greenPopulation.maintainPopulation(green.getPopulationEffect())}",
+                      "$populationGoal",
                       Colors.black, 24),
                   createText( "Revert planet volcano's resources to "
                       "${volcanic.getPriorResourceValue()}",
