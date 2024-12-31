@@ -18,7 +18,7 @@ class Resource {
     for (int key in resourceLevel.keys.toList()..sort()) {
       if (resourceQuantity <= key ) {
         resourceValue =  resourceLevel[key]!;
-        populationEffect = key;
+        populationEffect = key; // used to set goal and reduce population
         break;
       }
       priorResourceValue =  resourceLevel[key]!;
