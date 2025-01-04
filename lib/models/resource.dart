@@ -7,14 +7,17 @@ class Resource {
   late int populationEffect;
 
   Resource() {
+    resourceQuantity = Random().nextInt(19) + 11;
+    updateResourceValues();
+  }
+
+  void updateResourceValues() {
     Map<int, String> resourceLevel = {
       10 : "Adequate",
       15 : "Strained",
       20 : "Critical",
       30 : "Exhausted"
     };
-
-    resourceQuantity = Random().nextInt(19) + 11;
     for (int key in resourceLevel.keys.toList()..sort()) {
       if (resourceQuantity <= key ) {
         resourceValue =  resourceLevel[key]!;
@@ -35,6 +38,18 @@ class Resource {
 
   int getPopulationEffect() {
     return populationEffect;
+  }
+
+  void updateResource(int resource) {
+    int newQuantity = resourceQuantity + resource;
+    if (newQuantity < 30 || newQuantity > 1) {
+        resourceQuantity = newQuantity;
+        updateResourceValues();
+    }
+  }
+
+  bool checkResourceGoal() {
+    return getValue() == getPriorResourceValue();
   }
 
 }
