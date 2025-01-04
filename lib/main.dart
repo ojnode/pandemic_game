@@ -54,24 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    int greenPopulationEffect = greenResource.getPopulationEffect();
-    int redPopulationEffect = redResource.getPopulationEffect();
     initTree();
-    populationGoal = greenPopulation.maintainPopulation(greenPopulationEffect);
-    resourceGoal = redResource.getPriorResourceValue();
 
-    Timer.periodic(const Duration(seconds: 4), (timer) {
-      setState(() {
-        countdownValue --;
-        greenPopulation.reducePopulation(greenPopulationEffect);
-        redPopulation.reducePopulation(redPopulationEffect);
-        isGameWon = checkGameStatus(populationGoal, greenPopulation, resourceGoal,
-            redResource);
-      });
-      if (countdownValue <= 0) {
-        timer.cancel();
-      }
-    });
   }
 
   Future<void> initTree() async {
@@ -122,9 +106,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(onPressed: () {
                   setState(() {
                     startGame = true;
+                    int greenPopulationEffect = greenResource.getPopulationEffect();
+                    int redPopulationEffect = redResource.getPopulationEffect();
+
+                    populationGoal = greenPopulation.maintainPopulation(greenPopulationEffect);
+                    resourceGoal = redResource.getPriorResourceValue();
+
+                    Timer.periodic(const Duration(seconds: 4), (timer) {
+                      setState(() {
+                        countdownValue --;
+                        greenPopulation.reducePopulation(greenPopulationEffect);
+                        redPopulation.reducePopulation(redPopulationEffect);
+                        isGameWon = checkGameStatus(populationGoal, greenPopulation, resourceGoal,
+                            redResource);
+                      });
+                      if (countdownValue <= 0) {
+                        timer.cancel();
+                      }
+                    });
                   });
                 },
-                 child: createText("Start Game", Colors.red, 70))
+                 child: createText("Start Game", Colors.blueAccent, 70))
               ]
           ),
         ),
