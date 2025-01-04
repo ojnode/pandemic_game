@@ -4,6 +4,7 @@ import 'package:pandemic_game/models/economy.dart';
 import 'package:pandemic_game/models/resource.dart';
 import 'package:pandemic_game/models/population.dart';
 import 'dart:async';
+import 'dart:html';
 
 void main() {
   runApp(const MyApp());
@@ -47,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
   late String resourceGoal;
   DecisionTree currentTree = DecisionTree();
   bool isTreeLoaded = false;
+  bool isGameWon = false;
+  bool startGame = false;
 
   @override
   void initState() {
@@ -56,11 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
     initTree();
     populationGoal = greenPopulation.maintainPopulation(greenPopulationEffect);
     resourceGoal = redResource.getPriorResourceValue();
+
     Timer.periodic(const Duration(seconds: 4), (timer) {
       setState(() {
         countdownValue --;
         greenPopulation.reducePopulation(greenPopulationEffect);
         redPopulation.reducePopulation(redPopulationEffect);
+        isGameWon = checkGameStatus(populationGoal, greenPopulation, resourceGoal,
+            redResource);
       });
       if (countdownValue <= 0) {
         timer.cancel();
@@ -75,10 +81,96 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    if (!startGame) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: createText(
+                    "Welcome to Quarantine Quest!\n\n"
+                        "Your choices shape the economy, population, "
+                        "and health impacted countries."
+                        " No pressure, but one bad call, and it’s chaos!\n\n"
+                        "⏰ The Catch:\n"
+                        "Make the right decisions before the timer runs out, or"
+                        " it’s game over.\n\n"
+                        "Think fast, act smart, and don’t let your citizens down! 🚀",
+                    Colors.black,
+                    20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.04,
+                ),
+                ElevatedButton(onPressed: () {
+                  setState(() {
+                    startGame = true;
+                  });
+                },
+                 child: createText("Start Game", Colors.red, 70))
+              ]
+          ),
+        ),
+      );
+    }
+
     // used to avoid game loading before the tree is initialized
     if (!isTreeLoaded) {
       return Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (countdownValue == 0) {
+      if (isGameWon) {
+        return Scaffold(
+          body: Center(child:
+          Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                createText("Winner Winner SuperStar!!", Colors.blue, 30),
+                ElevatedButton(onPressed: () {
+                  window.location.reload();
+                }, child: createText("Play Again!", Colors.blue, 15))
+              ]
+            )
+          ),
+        );
+      }
+
+      return Scaffold(
+        body: Center(child:
+        Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              createText("Game Over!!", Colors.blue, 30),
+              ElevatedButton(onPressed: () {
+                window.location.reload();
+              }, child: createText("Try again", Colors.blue, 15))
+            ]
+          )
+        ),
       );
     }
 
@@ -253,4 +345,10 @@ Flexible createCountryDetails(context, population, resource, economy, imagePath)
   );
 }
 
+bool checkGameStatus(populationGoal, countryPopulation,
+    resourceGoal, countryResource) {
+      int population = countryPopulation.getPopulation();
+      String resource = countryResource.getValue();
+  return  population > populationGoal && resourceGoal == resource;
+}
 
