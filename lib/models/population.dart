@@ -26,4 +26,8 @@ class Population {
       return true;
   }
 
+  void increasePopulation(int recovered) {
+    populationValue += recovered;
+  }
+
 }
