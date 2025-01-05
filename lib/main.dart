@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -237,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
               Center(
                 child: Column(children: [
@@ -250,66 +250,68 @@ class _MyHomePageState extends State<MyHomePage> {
                         currentTree.getCurrentDescription(), Colors.black, 24),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.08,
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   Row(
                       mainAxisAlignment:
                           MainAxisAlignment.center, // Center vertically
                       children: [
-                        Wrap(
-                          spacing: 16,
-                          children: [
-                            for (var entry
-                                in currentTree.getCurrentChoices().entries)
-                              ElevatedButton(
-                                onPressed: () {
-                                  try {
-                                    setState(() {
-                                      bool resourceCheck =
-                                          redResource.checkResourceGoal();
-                                      // revert back to nodeA if player is to far from goal
-                                      if (currentTree.isNodeGreaterThan(
-                                          entry.value, resourceCheck)) {
-                                        currentTree.setCurrentNode("nodeA");
-                                      } else {
-                                        currentTree.setCurrentNode(entry.value);
-                                      }
+                        Flexible(
+                          child: Wrap(
+                            spacing: 16,
+                            children: [
+                              for (var entry
+                                  in currentTree.getCurrentChoices().entries)
+                                ElevatedButton(
+                                  onPressed: () {
+                                    try {
+                                      setState(() {
+                                        // revert back to nodeA
+                                        if (currentTree
+                                            .isNodeGreaterThan(entry.value)) {
+                                          currentTree.setCurrentNode("nodeA");
+                                        } else {
+                                          currentTree
+                                              .setCurrentNode(entry.value);
+                                        }
 
-                                      updateCountry(
-                                          currentTree,
-                                          "redresources",
-                                          "redEconomy",
-                                          redPopulation,
-                                          redResource,
-                                          redEconomy);
-                                      updateCountry(
-                                          currentTree,
-                                          "greenresources",
-                                          "greenEconomy",
-                                          greenPopulation,
-                                          greenResource,
-                                          greenEconomy);
-                                    });
-                                  } catch (e) {
-                                    print("Error button login: $e");
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Colors.redAccent, // Background color
-                                  foregroundColor: Colors.white, // Text color
-                                  elevation: 5, // Shadow effect
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 15), // Button size
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        12), // Rounded corners
+                                        updateCountry(
+                                            currentTree,
+                                            "redresources",
+                                            "redEconomy",
+                                            redPopulation,
+                                            redResource,
+                                            redEconomy);
+                                        updateCountry(
+                                            currentTree,
+                                            "greenresources",
+                                            "greenEconomy",
+                                            greenPopulation,
+                                            greenResource,
+                                            greenEconomy);
+                                      });
+                                    } catch (e) {
+                                      print("Error button login: $e");
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.redAccent, // Background color
+                                    foregroundColor: Colors.white, // Text color
+                                    elevation: 5, // Shadow effect
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 15), // Button size
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          12), // Rounded corners
+                                    ),
                                   ),
+                                  child:
+                                      createText(entry.key, Colors.black, 25),
                                 ),
-                                child: createText(entry.key, Colors.black, 25),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ]),
                 ]),
@@ -353,31 +355,31 @@ Flexible createCountryDetails(
     child: Column(children: [
       createSizeBox(imagePath, context),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.02,
+        height: MediaQuery.of(context).size.height * 0.01,
       ),
       Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Center(child: createText(countryName, Colors.black, 25)),
+          Center(
+              child:
+                  createText(countryName, Colors.black, 30, FontWeight.w800)),
           Row(children: [
             Flexible(
                 child: createText("Healthy Population:", Colors.black, 24)),
             Flexible(
-                child: createText(
-                    "${population.getPopulation()}", Colors.redAccent,
-                    26, FontWeight.bold))
+                child: createText("${population.getPopulation()}", Colors.brown,
+                    28, FontWeight.bold))
           ]),
           Row(children: [
             Flexible(child: createText("Resource Status:", Colors.black, 24)),
             Flexible(
-                child:
-                    createText("${resource.getValue()}", Colors.redAccent,
-                        26, FontWeight.bold))
+                child: createText("${resource.getValue()}", Colors.brown, 28,
+                    FontWeight.bold))
           ]),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
           Column(children: [
             createText("Economy", Colors.black, 20),

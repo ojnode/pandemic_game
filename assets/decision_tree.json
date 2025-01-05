@@ -164,7 +164,7 @@
     "description": "Green country begins recovery. Do you expand testing in green or red country?",
     "choices": {
       "Expand testing in green country": "nodeY",
-      "Expand testing in red country": "nodeZ"
+      "Expand testing in red country": "nodeYZ"
     },
     "actions": {
       "population": 15,
@@ -356,7 +356,7 @@
       "redEconomy": 10
     }
   },
-  "nodeZ": {
+  "nodeYZ": {
     "description": "Red country’s recovery team organizes a pandemic celebration parade, causing some new cases. How do you address this?",
     "choices": {
       "Postpone celebrations and promote safety": "nodeZB",
@@ -364,7 +364,7 @@
     },
     "actions": {
       "population": 5,
-      "redresources": 2,
+      "redresources": -2,
       "greenresources": 2,
       "greenEconomy": 0,
       "redEconomy": -20

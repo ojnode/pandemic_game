@@ -43,8 +43,8 @@ class DecisionTree {
     return tree[currentNode]["actions"][resourceEffect];
   }
 
-  bool isNodeGreaterThan(String currentNode, bool resourceCheck) {
-    return currentNode.compareTo("nodeS") > 0 && !resourceCheck;
+  bool isNodeGreaterThan(String currentNode) {
+    return currentNode.compareTo("nodeY") > 0;
   }
 
   int returnEconomyEffect(country) {

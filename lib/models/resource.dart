@@ -47,9 +47,4 @@ class Resource {
         updateResourceValues();
     }
   }
-
-  bool checkResourceGoal() {
-    return getValue() == getPriorResourceValue();
-  }
-
 }
