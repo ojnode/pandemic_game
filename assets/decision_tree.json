@@ -565,6 +565,146 @@
       "greenEconomy": 20,
       "redEconomy": -10
     }
+  },
+  "nodeTO": {
+    "description": "Hydroponic farming in the lab takes off, but the staff is now too busy growing vegetables to focus on vaccines. What’s next?",
+    "choices": {
+      "Encourage lab-grown salad sales": "nodeTP",
+      "Reassign staff back to vaccine duties": "nodeUQ"
+    },
+    "actions": {
+      "population": 10,
+      "greenresources": 2,
+      "redresources": -2,
+      "greenEconomy": 10,
+      "redEconomy": 20
+    }
+  },
+  "nodeTP": {
+    "description": "Strict lab discipline boosts vaccine production but staff morale hits rock bottom. How do you fix it?",
+    "choices": {
+      "Introduce karaoke lunch breaks": "nodeVS",
+      "Offer free coffee machines": "nodeVT"
+    },
+    "actions": {
+      "population": 5,
+      "greenresources": -2,
+      "redresources": -2,
+      "greenEconomy": 10,
+      "redEconomy": 20
+    }
+  },
+  "nodeUQ": {
+    "description": "Ice cream production in the red country is booming, but now citizens demand exotic flavors. What’s your response?",
+    "choices": {
+      "Import mangoes from green country": "nodeWU",
+      "Experiment with local ingredients": "nodeWV"
+    },
+    "actions": {
+      "population": 10,
+      "redresources": -5,
+      "greenresources": 2,
+      "greenEconomy": 10,
+      "redEconomy": 20
+    }
+  },
+  "nodeUR": {
+    "description": "Smoothies are a hit, but blender accidents in red country are on the rise. How do you address this?",
+    "choices": {
+      "Introduce safety tutorials": "nodeWX",
+      "Ban high-speed blending": "nodeWY"
+    },
+    "actions": {
+      "population": 20,
+      "greenresources": 2,
+      "redresources": -5,
+      "greenEconomy": -10,
+      "redEconomy": 0
+    }
+  },
+  "nodeVS": {
+    "description": "The science education campaign backfires as citizens now believe the earth is shaped like a vaccine. How do you respond?",
+    "choices": {
+      "Launch a space education program": "nodeYZ",
+      "Stick to pandemic recovery topics": "nodeYA"
+    },
+    "actions": {
+      "population": 15,
+      "redresources": 2,
+      "greenresources": 2,
+      "greenEconomy": 10,
+      "redEconomy": 10
+    }
+  },
+  "nodeVT": {
+    "description": "Banning alien vaccine rumors calms the public but sparks underground conspiracy blogs. What’s your move?",
+    "choices": {
+      "Shut down the blogs": "nodeZB",
+      "Flood the internet with cat videos": "nodeZC"
+    },
+    "actions": {
+      "population": 5,
+      "redresources": 2,
+      "greenresources": 2,
+      "greenEconomy": 0,
+      "redEconomy": -20
+    }
+  },
+  "nodeWU": {
+    "description": "Mango imports boost green country trade but exhaust red country’s ice cream demand. How do you balance this?",
+    "choices": {
+      "Shift focus to frozen yogurt": "nodeAB",
+      "Launch a 'No Mango Monday' policy": "nodeAC"
+    },
+    "actions": {
+      "population": 10,
+      "redresources": -2,
+      "greenresources": 2,
+      "greenEconomy": 0,
+      "redEconomy": 10
+    }
+  },
+  "nodeWV": {
+    "description": "Local ingredients create unique ice cream flavors, but green country complains about flavor theft. What’s your solution?",
+    "choices": {
+      "Patent the recipes": "nodeBD",
+      "Offer flavor exchange programs": "nodeBE"
+    },
+    "actions": {
+      "population": 5,
+      "redresources": -5,
+      "greenresources": 2,
+      "greenEconomy": 10,
+      "redEconomy": -10
+    }
+  },
+  "nodeWX": {
+    "description": "Digital vaccine certificates save paper but confuse the elderly population. How do you simplify things?",
+    "choices": {
+      "Launch a hotline for assistance": "nodeCF",
+      "Distribute printed manuals": "nodeCG"
+    },
+    "actions": {
+      "population": 20,
+      "redresources": 2,
+      "greenresources": -2,
+      "greenEconomy": -10,
+      "redEconomy": 20
+    }
+  },
+  "nodeWY": {
+    "description": "Sending a truckload of paper solves the issue, but a recycling crisis emerges. What’s your plan?",
+    "choices": {
+      "Start a recycling initiative": "nodeDH",
+      "Ban single-use paper": "nodeDI"
+    },
+    "actions": {
+      "population": 10,
+      "redresources": 0,
+      "greenresources": 2,
+      "greenEconomy": 20,
+      "redEconomy": 10
+    }
   }
 }
 

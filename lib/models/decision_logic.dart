@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:pandemic_game/cloud/firebase.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class DecisionTree {
   late Map<String, dynamic> tree;
@@ -7,8 +9,18 @@ class DecisionTree {
 
   // retrieve decision tree
   Future<void> getTree(String path) async {
-    String jsonString = await rootBundle.loadString(path);
-    tree = jsonDecode(jsonString);
+    await fetchGameData();
+    final box = Hive.box('gameData');
+
+    if (box.containsKey('firebaseData')) {
+      final data = Map<String, dynamic>.from(box.get('firebaseData'));
+      tree = data;
+      print("from hive yeah");
+    } else {
+      String jsonString = await rootBundle.loadString(path);
+      tree = jsonDecode(jsonString);
+      print("from assets");
+    }
   }
 
   String getCurrentDescription() {

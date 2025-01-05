@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  model_viewer_plus: ^1.8.0
+  cloud_firestore: ^5.0.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +26,4 @@ flutter:
     - assets/images/green.png
     - assets/images/volcanic.png
     - assets/decision_tree.json
+    - assets/images/background.jpg
