@@ -332,7 +332,7 @@
     "description": "Green country struggles with vaccine delivery due to a nationwide paper shortage. What’s your solution?",
     "choices": {
       "Switch to digital vaccine certificates": "nodeWX",
-      "Send a truckload of paper": "nodeWY"
+      "Send a truckload of paper": "nodeZY"
     },
     "actions": {
       "population": 20,
@@ -345,8 +345,8 @@
   "nodeY": {
     "description": "Both countries now want pandemic recovery medals. What do you do?",
     "choices": {
-      "Give medals to both countries": "nodeYZ",
-      "Award medals based on population health": "nodeYA"
+      "Give medals to both countries": "nodeZZ",
+      "Award medals based on population health": "nodeZA"
     },
     "actions": {
       "population": 15,
@@ -373,8 +373,8 @@
   "nodeAA": {
     "description": "Red country citizens complain about the test centers being too far. What’s your solution?",
     "choices": {
-      "Open mobile test centers": "nodeAB",
-      "Offer free rides to test centers": "nodeAC"
+      "Open mobile test centers": "nodeZB",
+      "Offer free rides to test centers": "nodeZC"
     },
     "actions": {
       "population": 10,
@@ -387,8 +387,8 @@
   "nodeBB": {
     "description": "Green country scientists demand more funding for vaccine production. What’s your move?",
     "choices": {
-      "Redirect research funds from red country": "nodeBD",
-      "Start a vaccine donation campaign": "nodeBE"
+      "Redirect research funds from red country": "nodeZD",
+      "Start a vaccine donation campaign": "nodeZE"
     },
     "actions": {
       "population": 5,
@@ -401,8 +401,8 @@
   "nodeCC": {
     "description": "Red country citizens start wearing masks as a fashion statement. Supplies are running low. What do you do?",
     "choices": {
-      "Import masks from green country": "nodeCF",
-      "Start a local mask production unit": "nodeCG"
+      "Import masks from green country": "nodeZF",
+      "Start a local mask production unit": "nodeZG"
     },
     "actions": {
       "population": 20,
@@ -415,8 +415,8 @@
   "nodeDD": {
     "description": "Green country is arguing over mask colors, and the debate is slowing recovery. How do you handle it?",
     "choices": {
-      "Mandate rainbow-colored masks": "nodeDH",
-      "Let citizens vote for a national mask color": "nodeDI"
+      "Mandate rainbow-colored masks": "nodeZH",
+      "Let citizens vote for a national mask color": "nodeZI"
     },
     "actions": {
       "population": 10,
@@ -429,8 +429,8 @@
   "nodeEE": {
     "description": "Red country medics complete their training but ask for raises. How do you respond?",
     "choices": {
-      "Increase medic salaries": "nodeEF",
-      "Offer non-monetary incentives": "nodeEG"
+      "Increase medic salaries": "nodeZF",
+      "Offer non-monetary incentives": "nodeZG"
     },
     "actions": {
       "population": 10,
@@ -443,8 +443,8 @@
   "nodeFF": {
     "description": "Green country resources are diverted, causing protests. How do you calm the citizens?",
     "choices": {
-      "Host a free concert": "nodeFG",
-      "Offer free food packages": "nodeFH"
+      "Host a free concert": "nodeZG",
+      "Offer free food packages": "nodeZH"
     },
     "actions": {
       "population": 5,
@@ -457,8 +457,8 @@
   "nodeGG": {
     "description": "Green country’s healthcare system is now world-class. Other countries request help. What’s your response?",
     "choices": {
-      "Share knowledge freely": "nodeGI",
-      "Charge for consultations": "nodeGJ"
+      "Share knowledge freely": "nodeZI",
+      "Charge for consultations": "nodeZJ"
     },
     "actions": {
       "population": 10,
@@ -471,8 +471,8 @@
   "nodeHH": {
     "description": "Red country is frustrated by the lack of resources. How do you address the issue?",
     "choices": {
-      "Divert surplus from green country": "nodeHI",
-      "Launch an emergency aid program": "nodeHJ"
+      "Divert surplus from green country": "nodeZI",
+      "Launch an emergency aid program": "nodeZJ"
     },
     "actions": {
       "population": 5,
@@ -485,8 +485,8 @@
   "nodeII": {
     "description": "Green country aid sparks rumors of favoritism in red country. How do you handle this?",
     "choices": {
-      "Issue a public clarification": "nodeIK",
-      "Increase aid to red country": "nodeIL"
+      "Issue a public clarification": "nodeZK",
+      "Increase aid to red country": "nodeZL"
     },
     "actions": {
       "population": 15,
@@ -499,8 +499,8 @@
   "nodeJJ": {
     "description": "Equal aid distribution causes delays in resource delivery. What’s your next step?",
     "choices": {
-      "Speed up logistics with tech": "nodeJM",
-      "Focus resources on urgent needs": "nodeJN"
+      "Speed up logistics with tech": "nodeZM",
+      "Focus resources on urgent needs": "nodeZN"
     },
     "actions": {
       "population": 5,
@@ -513,8 +513,8 @@
   "nodeKK": {
     "description": "Testing in red country is progressing, but they demand entertainment while waiting. What’s your response?",
     "choices": {
-      "Install TVs at test centers": "nodeKL",
-      "Offer live music performances": "nodeKM"
+      "Install TVs at test centers": "nodeZL",
+      "Offer live music performances": "nodeZM"
     },
     "actions": {
       "population": 10,
@@ -527,8 +527,8 @@
   "nodeLL": {
     "description": "Green country recovery accelerates, but red country complains about unequal attention. How do you address this?",
     "choices": {
-      "Divert some resources to red country": "nodeLN",
-      "Explain the recovery strategy": "nodeLO"
+      "Divert some resources to red country": "nodeZN",
+      "Explain the recovery strategy": "nodeZO"
     },
     "actions": {
       "population": 5,
@@ -541,8 +541,8 @@
   "nodeMM": {
     "description": "Increased funding boosts green country recovery but sparks protests in red country. What’s your solution?",
     "choices": {
-      "Rebalance funding": "nodeMP",
-      "Host town halls to explain decisions": "nodeMQ"
+      "Rebalance funding": "nodeZP",
+      "Host town halls to explain decisions": "nodeZQ"
     },
     "actions": {
       "population": 20,
@@ -555,8 +555,8 @@
   "nodeNN": {
     "description": "Green country’s vaccine production soars, but red country accuses them of hoarding. What’s your move?",
     "choices": {
-      "Share surplus vaccines": "nodeNR",
-      "Launch a PR campaign": "nodeNS"
+      "Share surplus vaccines": "nodeZR",
+      "Launch a PR campaign": "nodeZS"
     },
     "actions": {
       "population": 15,
@@ -569,8 +569,8 @@
   "nodeTO": {
     "description": "Hydroponic farming in the lab takes off, but the staff is now too busy growing vegetables to focus on vaccines. What’s next?",
     "choices": {
-      "Encourage lab-grown salad sales": "nodeTP",
-      "Reassign staff back to vaccine duties": "nodeUQ"
+      "Encourage lab-grown salad sales": "nodeZP",
+      "Reassign staff back to vaccine duties": "nodeZQ"
     },
     "actions": {
       "population": 10,
@@ -583,8 +583,8 @@
   "nodeTP": {
     "description": "Strict lab discipline boosts vaccine production but staff morale hits rock bottom. How do you fix it?",
     "choices": {
-      "Introduce karaoke lunch breaks": "nodeVS",
-      "Offer free coffee machines": "nodeVT"
+      "Introduce karaoke lunch breaks": "nodeZS",
+      "Offer free coffee machines": "nodeZT"
     },
     "actions": {
       "population": 5,
@@ -597,8 +597,8 @@
   "nodeUQ": {
     "description": "Ice cream production in the red country is booming, but now citizens demand exotic flavors. What’s your response?",
     "choices": {
-      "Import mangoes from green country": "nodeWU",
-      "Experiment with local ingredients": "nodeWV"
+      "Import mangoes from green country": "nodeZU",
+      "Experiment with local ingredients": "nodeZV"
     },
     "actions": {
       "population": 10,
@@ -611,8 +611,8 @@
   "nodeUR": {
     "description": "Smoothies are a hit, but blender accidents in red country are on the rise. How do you address this?",
     "choices": {
-      "Introduce safety tutorials": "nodeWX",
-      "Ban high-speed blending": "nodeWY"
+      "Introduce safety tutorials": "nodeZX",
+      "Ban high-speed blending": "nodeZY"
     },
     "actions": {
       "population": 20,
@@ -625,8 +625,8 @@
   "nodeVS": {
     "description": "The science education campaign backfires as citizens now believe the earth is shaped like a vaccine. How do you respond?",
     "choices": {
-      "Launch a space education program": "nodeYZ",
-      "Stick to pandemic recovery topics": "nodeYA"
+      "Launch a space education program": "nodeZZ",
+      "Stick to pandemic recovery topics": "nodeZA"
     },
     "actions": {
       "population": 15,
@@ -653,8 +653,8 @@
   "nodeWU": {
     "description": "Mango imports boost green country trade but exhaust red country’s ice cream demand. How do you balance this?",
     "choices": {
-      "Shift focus to frozen yogurt": "nodeAB",
-      "Launch a 'No Mango Monday' policy": "nodeAC"
+      "Shift focus to frozen yogurt": "nodeZB",
+      "Launch a 'No Mango Monday' policy": "nodeZL"
     },
     "actions": {
       "population": 10,
@@ -667,8 +667,8 @@
   "nodeWV": {
     "description": "Local ingredients create unique ice cream flavors, but green country complains about flavor theft. What’s your solution?",
     "choices": {
-      "Patent the recipes": "nodeBD",
-      "Offer flavor exchange programs": "nodeBE"
+      "Patent the recipes": "nodeZD",
+      "Offer flavor exchange programs": "nodeZE"
     },
     "actions": {
       "population": 5,
@@ -681,8 +681,8 @@
   "nodeWX": {
     "description": "Digital vaccine certificates save paper but confuse the elderly population. How do you simplify things?",
     "choices": {
-      "Launch a hotline for assistance": "nodeCF",
-      "Distribute printed manuals": "nodeCG"
+      "Launch a hotline for assistance": "nodeZF",
+      "Distribute printed manuals": "nodeZG"
     },
     "actions": {
       "population": 20,
@@ -690,20 +690,6 @@
       "greenresources": -2,
       "greenEconomy": -10,
       "redEconomy": 20
-    }
-  },
-  "nodeWY": {
-    "description": "Sending a truckload of paper solves the issue, but a recycling crisis emerges. What’s your plan?",
-    "choices": {
-      "Start a recycling initiative": "nodeDH",
-      "Ban single-use paper": "nodeDI"
-    },
-    "actions": {
-      "population": 10,
-      "redresources": 0,
-      "greenresources": 2,
-      "greenEconomy": 20,
-      "redEconomy": 10
     }
   }
 }
