@@ -76,67 +76,71 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!startGame) {
       return Scaffold(
         body: Center(
-          child: Column(children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-            ),
-            Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                  ),
-                ],
+          child: SingleChildScrollView(
+            child: Column(children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
-              child: createText(
-                "Welcome to Quarantine Quest!\n\n"
-                "Your choices shape the economy, population, "
-                "and health of impacted countries."
-                "No pressure, but one bad call, and it’s chaos!\n\n"
-                "⏰ The Catch:\n"
-                "Make the right decisions before the timer runs out, or"
-                " it’s game over.\n\n"
-                "Think fast, act smart, and don’t let your citizens down! 🚀",
-                Colors.black,
-                20,
+              Container(
+                padding: EdgeInsets.all(16),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: createText(
+                  "Welcome to Quarantine Quest!\n\n"
+                  "Your choices shape the economy, population, "
+                  "and health of impacted countries."
+                  "No pressure, but one bad call, and it’s chaos!\n\n"
+                  "⏰ The Catch:\n"
+                  "Make the right decisions before the timer runs out, or"
+                  " it’s game over.\n\n"
+                  "Think fast, act smart, and don’t let your citizens down! 🚀",
+                  Colors.black,
+                  20,
+                ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    startGame = true;
-                    int greenPopulationEffect =
-                        greenResource.getPopulationEffect();
-                    int redPopulationEffect = redResource.getPopulationEffect();
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      startGame = true;
+                      int greenPopulationEffect =
+                          greenResource.getPopulationEffect();
+                      int redPopulationEffect =
+                          redResource.getPopulationEffect();
 
-                    populationGoal = greenPopulation
-                        .maintainPopulation(greenPopulationEffect);
-                    resourceGoal = redResource.getPriorResourceValue();
+                      populationGoal = greenPopulation
+                          .maintainPopulation(greenPopulationEffect);
+                      resourceGoal = redResource.getPriorResourceValue();
 
-                    Timer.periodic(const Duration(seconds: 7), (timer) {
-                      setState(() {
-                        countdownValue--;
-                        greenPopulation.reducePopulation(greenPopulationEffect);
-                        redPopulation.reducePopulation(redPopulationEffect);
-                        isGameWon = checkGameStatus(populationGoal,
-                            greenPopulation, resourceGoal, redResource);
+                      Timer.periodic(const Duration(seconds: 6), (timer) {
+                        setState(() {
+                          countdownValue--;
+                          greenPopulation
+                              .reducePopulation(greenPopulationEffect);
+                          redPopulation.reducePopulation(redPopulationEffect);
+                          isGameWon = checkGameStatus(populationGoal,
+                              greenPopulation, resourceGoal, redResource);
+                        });
+                        if (countdownValue <= 0) {
+                          timer.cancel();
+                        }
                       });
-                      if (countdownValue <= 0) {
-                        timer.cancel();
-                      }
                     });
-                  });
-                },
-                child: createText("Start Game", Colors.blueAccent, 70))
-          ]),
+                  },
+                  child: createText("Start Game", Colors.blueAccent, 70))
+            ]),
+          ),
         ),
       );
     }
@@ -187,123 +191,135 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(children: [
-          Row(children: [
-            createCountryDetails(context, "GREEN", greenPopulation,
-                greenResource, greenEconomy, 'assets/images/green.png'),
-            Spacer(),
-            createText(countdownValue.toString(), Colors.blue, 100),
-            Spacer(),
-            createCountryDetails(context, "RED", redPopulation, redResource,
-                redEconomy, 'assets/images/volcanic.png'),
-          ]),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
+      body: Stack(
+        children: [
           Container(
-            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: [
-                createText(
-                    "Stop green country population "
-                    "from going less than "
-                    "$populationGoal",
-                    Colors.black,
-                    24),
-                createText(
-                    "Revert and maintain red country resources at "
-                    "$resourceGoal",
-                    Colors.black,
-                    24),
-              ],
+              image: DecorationImage(
+                image: AssetImage("assets/images/background.jpg"),
+                fit: BoxFit.cover,
+              ),
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-          Center(
-            child: Column(children: [
-              Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: Colors.blueGrey,
-                    borderRadius: BorderRadius.circular(10)),
-                child: createText(
-                    currentTree.getCurrentDescription(), Colors.black, 24),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.08,
-              ),
-              Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center vertically
-                  children: [
-                    Wrap(
-                      spacing: 16,
-                      children: [
-                        for (var entry
-                            in currentTree.getCurrentChoices().entries)
-                          ElevatedButton(
-                            onPressed: () {
-                              try {
-                                setState(() {
-                                  bool resourceCheck =
-                                      redResource.checkResourceGoal();
-                                  // revert back to nodeA if player is to far from goal
-                                  if (currentTree.isNodeGreaterThan(
-                                      entry.value, resourceCheck)) {
-                                    currentTree.setCurrentNode("nodeA");
-                                  } else {
-                                    currentTree.setCurrentNode(entry.value);
-                                  }
 
-                                  updateCountry(
-                                      currentTree,
-                                      "redresources",
-                                      "redEconomy",
-                                      redPopulation,
-                                      redResource,
-                                      redEconomy);
-                                  updateCountry(
-                                      currentTree,
-                                      "greenresources",
-                                      "greenEconomy",
-                                      greenPopulation,
-                                      greenResource,
-                                      greenEconomy);
-                                });
-                              } catch (e) {
-                                print("Error button login: $e");
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent, // Background color
-                              foregroundColor: Colors.white, // Text color
-                              elevation: 5, // Shadow effect
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15), // Button size
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12), // Rounded corners
-                              ),
-                          ),
-                            child: createText(entry.key, Colors.black, 25),
-                          ),
-                      ],
+            SingleChildScrollView(
+              child: Column(children: [
+                Row(children: [
+                  createCountryDetails(context, "GREEN", greenPopulation,
+                      greenResource, greenEconomy, 'assets/images/green.png'),
+                  Spacer(),
+                  createText(countdownValue.toString(), Colors.blue, 100),
+                  Spacer(),
+                  createCountryDetails(context, "RED", redPopulation,
+                      redResource, redEconomy, 'assets/images/volcanic.png'),
+                ]),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: Colors.blueGrey,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      createText(
+                          "Stop green country population "
+                          "from going less than "
+                          "$populationGoal",
+                          Colors.black,
+                          24),
+                      createText(
+                          "Revert and maintain red country resources at "
+                          "$resourceGoal",
+                          Colors.black,
+                          24),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
+                Center(
+                  child: Column(children: [
+                    Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: createText(currentTree.getCurrentDescription(),
+                          Colors.black, 24),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                    ),
+                    Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Center vertically
+                        children: [
+                          Wrap(
+                            spacing: 16,
+                            children: [
+                              for (var entry
+                                  in currentTree.getCurrentChoices().entries)
+                                ElevatedButton(
+                                  onPressed: () {
+                                    try {
+                                      setState(() {
+                                        bool resourceCheck =
+                                            redResource.checkResourceGoal();
+                                        // revert back to nodeA if player is to far from goal
+                                        if (currentTree.isNodeGreaterThan(
+                                            entry.value, resourceCheck)) {
+                                          currentTree.setCurrentNode("nodeA");
+                                        } else {
+                                          currentTree
+                                              .setCurrentNode(entry.value);
+                                        }
+
+                                        updateCountry(
+                                            currentTree,
+                                            "redresources",
+                                            "redEconomy",
+                                            redPopulation,
+                                            redResource,
+                                            redEconomy);
+                                        updateCountry(
+                                            currentTree,
+                                            "greenresources",
+                                            "greenEconomy",
+                                            greenPopulation,
+                                            greenResource,
+                                            greenEconomy);
+                                      });
+                                    } catch (e) {
+                                      print("Error button login: $e");
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.redAccent, // Background color
+                                    foregroundColor: Colors.white, // Text color
+                                    elevation: 5, // Shadow effect
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 15), // Button size
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          12), // Rounded corners
+                                    ),
+                                  ),
+                                  child:
+                                      createText(entry.key, Colors.black, 25),
+                                ),
+                            ],
+                          ),
+                        ]),
                   ]),
-            ]),
-          ),
-          Spacer()
-        ]),
+                ),
+              ]),
+            ),
+        ],
       ),
     );
   }
