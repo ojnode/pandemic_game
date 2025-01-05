@@ -199,126 +199,123 @@ class _MyHomePageState extends State<MyHomePage> {
                 image: AssetImage("assets/images/background.jpg"),
                 fit: BoxFit.cover,
               ),
-              ),
             ),
-
-            SingleChildScrollView(
-              child: Column(children: [
-                Row(children: [
-                  createCountryDetails(context, "GREEN", greenPopulation,
-                      greenResource, greenEconomy, 'assets/images/green.png'),
-                  Spacer(),
-                  createText(countdownValue.toString(), Colors.blue, 100),
-                  Spacer(),
-                  createCountryDetails(context, "RED", redPopulation,
-                      redResource, redEconomy, 'assets/images/volcanic.png'),
-                ]),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [
-                      createText(
-                          "Stop green country population "
-                          "from going less than "
-                          "$populationGoal",
-                          Colors.black,
-                          24),
-                      createText(
-                          "Revert and maintain red country resources at "
-                          "$resourceGoal",
-                          Colors.black,
-                          24),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                ),
-                Center(
-                  child: Column(children: [
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: Colors.blueGrey,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: createText(currentTree.getCurrentDescription(),
-                          Colors.black, 24),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.08,
-                    ),
-                    Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center, // Center vertically
-                        children: [
-                          Wrap(
-                            spacing: 16,
-                            children: [
-                              for (var entry
-                                  in currentTree.getCurrentChoices().entries)
-                                ElevatedButton(
-                                  onPressed: () {
-                                    try {
-                                      setState(() {
-                                        bool resourceCheck =
-                                            redResource.checkResourceGoal();
-                                        // revert back to nodeA if player is to far from goal
-                                        if (currentTree.isNodeGreaterThan(
-                                            entry.value, resourceCheck)) {
-                                          currentTree.setCurrentNode("nodeA");
-                                        } else {
-                                          currentTree
-                                              .setCurrentNode(entry.value);
-                                        }
-
-                                        updateCountry(
-                                            currentTree,
-                                            "redresources",
-                                            "redEconomy",
-                                            redPopulation,
-                                            redResource,
-                                            redEconomy);
-                                        updateCountry(
-                                            currentTree,
-                                            "greenresources",
-                                            "greenEconomy",
-                                            greenPopulation,
-                                            greenResource,
-                                            greenEconomy);
-                                      });
-                                    } catch (e) {
-                                      print("Error button login: $e");
-                                    }
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Colors.redAccent, // Background color
-                                    foregroundColor: Colors.white, // Text color
-                                    elevation: 5, // Shadow effect
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                        vertical: 15), // Button size
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          12), // Rounded corners
-                                    ),
-                                  ),
-                                  child:
-                                      createText(entry.key, Colors.black, 25),
-                                ),
-                            ],
-                          ),
-                        ]),
-                  ]),
-                ),
+          ),
+          SingleChildScrollView(
+            child: Column(children: [
+              Row(children: [
+                createCountryDetails(context, "GREEN", greenPopulation,
+                    greenResource, greenEconomy, 'assets/images/green.png'),
+                Spacer(),
+                createText(countdownValue.toString(), Colors.blue, 100),
+                Spacer(),
+                createCountryDetails(context, "RED", redPopulation, redResource,
+                    redEconomy, 'assets/images/volcanic.png'),
               ]),
-            ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    createText(
+                        "Stop green country population "
+                        "from going less than "
+                        "$populationGoal",
+                        Colors.black,
+                        24),
+                    createText(
+                        "Revert and maintain red country resources at "
+                        "$resourceGoal",
+                        Colors.black,
+                        24),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              Center(
+                child: Column(children: [
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.blueGrey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: createText(
+                        currentTree.getCurrentDescription(), Colors.black, 24),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                  ),
+                  Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.center, // Center vertically
+                      children: [
+                        Wrap(
+                          spacing: 16,
+                          children: [
+                            for (var entry
+                                in currentTree.getCurrentChoices().entries)
+                              ElevatedButton(
+                                onPressed: () {
+                                  try {
+                                    setState(() {
+                                      bool resourceCheck =
+                                          redResource.checkResourceGoal();
+                                      // revert back to nodeA if player is to far from goal
+                                      if (currentTree.isNodeGreaterThan(
+                                          entry.value, resourceCheck)) {
+                                        currentTree.setCurrentNode("nodeA");
+                                      } else {
+                                        currentTree.setCurrentNode(entry.value);
+                                      }
+
+                                      updateCountry(
+                                          currentTree,
+                                          "redresources",
+                                          "redEconomy",
+                                          redPopulation,
+                                          redResource,
+                                          redEconomy);
+                                      updateCountry(
+                                          currentTree,
+                                          "greenresources",
+                                          "greenEconomy",
+                                          greenPopulation,
+                                          greenResource,
+                                          greenEconomy);
+                                    });
+                                  } catch (e) {
+                                    print("Error button login: $e");
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Colors.redAccent, // Background color
+                                  foregroundColor: Colors.white, // Text color
+                                  elevation: 5, // Shadow effect
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 15), // Button size
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        12), // Rounded corners
+                                  ),
+                                ),
+                                child: createText(entry.key, Colors.black, 25),
+                              ),
+                          ],
+                        ),
+                      ]),
+                ]),
+              ),
+            ]),
+          ),
         ],
       ),
     );
@@ -337,12 +334,14 @@ SizedBox createSizeBox(String filepath, context) {
   );
 }
 
-Text createText(String inputText, Color color, double font) {
+Text createText(String inputText, Color color, double font,
+    [FontWeight? fontWeight]) {
   return Text(
     inputText,
     style: TextStyle(
       color: color,
       fontSize: font,
+      fontWeight: fontWeight,
     ),
   );
 }
@@ -360,15 +359,23 @@ Flexible createCountryDetails(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
-        child: Column(children: [
-          createText(countryName, Colors.black, 20),
-          createText(
-              "Healthy Population:"
-              " ${population.getPopulation()}",
-              Colors.black,
-              24),
-          createText(
-              "Resource Status: ${resource.getValue()}", Colors.black, 24),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Center(child: createText(countryName, Colors.black, 25)),
+          Row(children: [
+            Flexible(
+                child: createText("Healthy Population:", Colors.black, 24)),
+            Flexible(
+                child: createText(
+                    "${population.getPopulation()}", Colors.redAccent,
+                    26, FontWeight.bold))
+          ]),
+          Row(children: [
+            Flexible(child: createText("Resource Status:", Colors.black, 24)),
+            Flexible(
+                child:
+                    createText("${resource.getValue()}", Colors.redAccent,
+                        26, FontWeight.bold))
+          ]),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
