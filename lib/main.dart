@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           .maintainPopulation(greenPopulationEffect);
                       resourceGoal = redResource.getPriorResourceValue();
 
-                      Timer.periodic(const Duration(seconds: 6), (timer) {
+                      Timer.periodic(const Duration(seconds: 5), (timer) {
                         setState(() {
                           countdownValue--;
                           greenPopulation
@@ -156,33 +156,64 @@ class _MyHomePageState extends State<MyHomePage> {
     if (countdownValue == 0) {
       if (isGameWon) {
         return Scaffold(
-          body: Center(
-              child: Column(children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
+          body: Stack(children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/peace.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            createText("Winner Winner SuperStar!!", Colors.blue, 30),
-            ElevatedButton(
-                onPressed: () {
-                  window.location.reload();
-                },
-                child: createText("Play Again!", Colors.blue, 15))
-          ])),
+            Align(
+              alignment: Alignment(0, -0.2), // Slightly above the center
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white
+                      .withOpacity(0.8), // Background with transparency
+                  borderRadius: BorderRadius.circular(15), // Rounded corners
+                ),
+                child: Column(children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                  createText("Winner Winner SuperStar!!", Colors.blue, 50),
+                  ElevatedButton(
+                      onPressed: () {
+                        window.location.reload();
+                      },
+                      child: createText("Play Again!", Colors.blue, 35))
+                ]),
+              ),
+            ),
+          ]),
         );
       }
+
       return Scaffold(
-        body: Center(
-            child: Column(children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+        body: Stack(children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/rabbit.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          createText("Game Over!!", Colors.blue, 30),
-          ElevatedButton(
-              onPressed: () {
-                window.location.reload();
-              },
-              child: createText("Try again", Colors.blue, 15))
-        ])),
+          Center(
+              child: Column(children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                createText("Game Over!!", Colors.blue, 50),
+                ElevatedButton(
+                    onPressed: () {
+                      window.location.reload();
+                    },
+                    child: createText("Try again", Colors.blue, 35))
+          ])),
+        ]),
       );
     }
 
