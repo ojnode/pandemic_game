@@ -1,6 +1,5 @@
 # Quarantine Quest 🎮
 
-**Quarantine Quest** is a strategy-based game where players make critical decisions. 
 The game combines modern technologies to create an engaging and immersive gameplay experience.
 
 ## 🛠️ Technologies Used
